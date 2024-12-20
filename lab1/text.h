@@ -2,6 +2,7 @@
 
 typedef const char* Color;
 
+static Color noColor = "\033[0m";
 static Color blueColor  = "\033[34m";
 static Color greenColor = "\033[32m";
 static Color cyanColor  = "\033[36m";
