@@ -25,3 +25,7 @@ add_executable(lab7_consumer
         lab7/consumer.c)
 add_executable(lab8
         lab8/main.c)
+add_executable(lab11
+        lab11/main.c)
+add_executable(lab10
+        lab10/main.c)

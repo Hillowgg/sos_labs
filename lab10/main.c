@@ -3,29 +3,32 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+pthread_cond_t cond;
 pthread_mutex_t mu;
 
 void *read_thread(void* counter) {
     int *num = (int*)counter;
     while(1) {
-        pthread_mutex_lock(&mu);
+        pthread_cond_wait(&cond, &mu);
         printf("tid: %lu, counter: %d\n", pthread_self(), *num);
-        pthread_mutex_unlock(&mu);
-        usleep(100000);
     }
 }
 
 void* write_thread(void* counter) {
     int *num = (int*)counter;
     while(1) {
-        pthread_mutex_lock(&mu);
-        (*num)++;
         sleep(1);
-        pthread_mutex_unlock(&mu);
+        (*num)++;
+        pthread_cond_broadcast(&cond);
     }
 }
 
 int main() {
+    if (pthread_cond_init(&cond, NULL) != 0) {
+        perror("Failed to create mutex");
+        exit(1);
+    }
     if (pthread_mutex_init(&mu, NULL) != 0) {
         perror("Failed to create mutex");
         exit(1);
@@ -47,9 +50,12 @@ int main() {
         exit(1);
     }
 
+    if (pthread_cond_destroy(&cond) != 0) {
+        perror("Failed to destroy mutex");
+        exit(1);
+    }
     if (pthread_mutex_destroy(&mu) != 0) {
         perror("Failed to destroy mutex");
-
         exit(1);
     }
     return 0;
