@@ -8,6 +8,8 @@
 #include <unistd.h>
 
 int main() {
+
+
     int shmId = shmget(12345, 100, IPC_CREAT | 0666);
     if (shmId == -1) {
         perror("Failed to connect to shared memory");

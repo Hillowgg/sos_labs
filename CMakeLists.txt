@@ -23,6 +23,10 @@ add_executable(lab7_producer
         lab7/producer.c)
 add_executable(lab7_consumer
         lab7/consumer.c)
+add_executable(lab9_producer
+        lab9/producer.c)
+add_executable(lab9_consumer
+        lab9/consumer.c)
 add_executable(lab8
         lab8/main.c)
 add_executable(lab11
