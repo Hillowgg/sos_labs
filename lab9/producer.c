@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
+#include <signal.h>
 
 sem_t *sem;
 bool lockedSem = false;

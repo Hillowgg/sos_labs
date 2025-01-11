@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
+#include <signal.h>
 
 int main() {
     int shmId = shmget(12345, 100, IPC_CREAT | 0666);

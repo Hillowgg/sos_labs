@@ -11,6 +11,7 @@ void *read_thread(void* counter) {
         pthread_rwlock_rdlock(&mu);
         printf("tid: %lu, counter: %d\n", pthread_self(), *num);
         pthread_rwlock_unlock(&mu);
+        sleep(1);
     }
 }
 
@@ -19,8 +20,8 @@ void* write_thread(void* counter) {
     while(1) {
         pthread_rwlock_wrlock(&mu);
         (*num)++;
-        sleep(1);
         pthread_rwlock_unlock(&mu);
+        sleep(1);
     }
 }
 

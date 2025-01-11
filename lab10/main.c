@@ -10,8 +10,10 @@ pthread_mutex_t mu;
 void *read_thread(void* counter) {
     int *num = (int*)counter;
     while(1) {
+        pthread_mutex_lock(&mu);
         pthread_cond_wait(&cond, &mu);
         printf("tid: %lu, counter: %d\n", pthread_self(), *num);
+        pthread_mutex_unlock(&mu);
     }
 }
 
@@ -19,8 +21,10 @@ void* write_thread(void* counter) {
     int *num = (int*)counter;
     while(1) {
         sleep(1);
+        pthread_mutex_lock(&mu);
         (*num)++;
         pthread_cond_broadcast(&cond);
+        pthread_mutex_unlock(&mu);
     }
 }
 

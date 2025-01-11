@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 
 void sigintHandler(int _) {
     printf("[pid: %d]sigint!\n", getpid());

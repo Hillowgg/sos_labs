@@ -3,6 +3,7 @@
 #include <semaphore.h>
 #include <sys/ipc.h>
 #include <sys/errno.h>
+#include <signal.h>
 #include <sys/shm.h>
 #include <stdlib.h>
 #include <stdbool.h>
